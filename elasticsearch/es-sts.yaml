@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: es-cluster
+  namespace: efk
 spec:
   serviceName: elasticsearch
   replicas: 3
@@ -70,7 +71,7 @@ spec:
         app: elasticsearch
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      # storageClassName: ""
+      storageClassName: local-path
       resources:
         requests:
           storage: 3Gi
